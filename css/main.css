@@ -1,0 +1,196 @@
+body {
+    background-color: #000000;
+    overflow-x: hidden;
+}
+
+.header {
+    padding: 24px 0;
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.nav {
+    display: flex;
+    gap: 48px;
+}
+
+.nav a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero {
+    padding: 120px 0;
+}
+
+.hero-content {
+    text-align: center;
+}
+
+.hero-title {
+    margin-bottom: 24px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #999999;
+    margin-bottom: 48px;
+}
+
+.features,
+.pricing,
+.application,
+.contact {
+    padding: 120px 0;
+    border-top: 1px solid #222222;
+}
+
+.section-title {
+    margin-bottom: 64px;
+}
+
+.feature-card {
+    padding: 40px 0;
+}
+
+.feature-number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #333333;
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #999999;
+}
+
+.price-card {
+    padding: 48px 40px;
+    border: 1px solid #222222;
+    transition: border-color 0.3s ease;
+}
+
+.price-card:hover {
+    border-color: #ffffff;
+}
+
+.price-card.featured {
+    border-color: #ffffff;
+    position: relative;
+}
+
+.price-type {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+}
+
+.price-value {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.price-duration {
+    font-size: 0.875rem;
+    color: #666666;
+    margin-bottom: 32px;
+}
+
+.price-features {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.price-features li {
+    padding: 12px 0;
+    border-top: 1px solid #222222;
+    font-size: 0.9375rem;
+}
+
+.price-features li:first-child {
+    border-top: none;
+}
+
+.contact-item {
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666666;
+}
+
+.contact-value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.footer {
+    padding: 40px 0;
+    border-top: 1px solid #222222;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: #666666;
+}
+
+@media (max-width: 767px) {
+    .nav {
+        display: none;
+    }
+    
+    .hero {
+        padding: 80px 0;
+    }
+    
+    .features,
+    .pricing,
+    .application,
+    .contact {
+        padding: 80px 0;
+    }
+    
+    .price-card {
+        padding: 32px 24px;
+    }
+    
+    .price-value {
+        font-size: 3rem;
+    }
+    
+    .contact-value {
+        font-size: 1.5rem;
+    }
+}

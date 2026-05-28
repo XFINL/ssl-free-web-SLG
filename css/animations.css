@@ -1,0 +1,25 @@
+.hero-title,
+.hero-subtitle,
+.cta-button,
+.section-title,
+.feature-card,
+.price-card,
+.contact-item,
+.application-form {
+    opacity: 0;
+}
+
+.feature-number {
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-number::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
