@@ -11,37 +11,29 @@ function initForms() {
                 organization: document.getElementById('organization').value
             };
             
-            const tl = gsap.timeline();
-            tl.to('.submit-button', {
-                scale: 0.95,
+            gsap.to('.submit-button', {
+                scale: 0.98,
                 duration: 0.1,
-                ease: 'power2.in'
-            })
-            .to('.submit-button', {
-                scale: 1,
-                duration: 0.3,
-                ease: 'elastic.out(1, 0.3)'
+                ease: 'power2.in',
+                yoyo: true,
+                repeat: 1
             });
             
             console.log('Form submitted:', formData);
             
-            alert('申请已提交！我们会尽快与您联系。');
+            alert('申请已提交');
         });
     }
     
-    const priceButtons = document.querySelectorAll('.price-button');
+    const priceButtons = document.querySelectorAll('.price-action');
     priceButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
-            const tl = gsap.timeline();
-            tl.to(this, {
-                scale: 0.95,
+            gsap.to(this, {
+                scale: 0.98,
                 duration: 0.1,
-                ease: 'power2.in'
-            })
-            .to(this, {
-                scale: 1,
-                duration: 0.3,
-                ease: 'elastic.out(1, 0.3)'
+                ease: 'power2.in',
+                yoyo: true,
+                repeat: 1
             });
             
             const types = ['dv', 'ov', 'ev'];
@@ -54,7 +46,7 @@ function initForms() {
             if (applicationSection) {
                 gsap.to(window, {
                     scrollTo: { y: applicationSection, offsetY: 40 },
-                    duration: 1,
+                    duration: 0.8,
                     ease: 'power3.out'
                 });
             }

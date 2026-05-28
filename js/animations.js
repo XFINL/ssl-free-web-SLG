@@ -1,106 +1,114 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function initAnimations() {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({ delay: 0.2 });
     
-    tl.to('.hero-title', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
-    })
-    .to('.hero-subtitle', {
+    tl.to('.logo', {
         opacity: 1,
         y: 0,
         duration: 0.8,
+        ease: 'power3.out'
+    })
+    .to('.nav a', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.08
+    }, '-=0.4')
+    .to('.hero-label', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out'
+    }, '-=0.3')
+    .to('.hero-title', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+    }, '-=0.3')
+    .to('.hero-subtitle', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
         ease: 'power3.out'
     }, '-=0.5')
     .to('.cta-button', {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.6,
         ease: 'power3.out'
-    }, '-=0.4');
+    }, '-=0.3');
     
-    gsap.from('.logo', {
-        opacity: 0,
-        x: -30,
-        duration: 1,
-        ease: 'power3.out',
-        delay: 0.2
-    });
+    const sections = ['.features', '.pricing', '.application', '.contact'];
     
-    gsap.from('.nav a', {
-        opacity: 0,
-        y: -20,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.1,
-        delay: 0.3
-    });
-    
-    gsap.utils.toArray('.section-title').forEach(title => {
+    sections.forEach(section => {
+        const label = section + ' .section-label';
+        const title = section + ' .section-title';
+        
+        gsap.to(label, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            }
+        });
+        
         gsap.to(title, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             ease: 'power3.out',
             scrollTrigger: {
-                trigger: title,
-                start: 'top 80%',
+                trigger: section,
+                start: 'top 75%',
                 toggleActions: 'play none none none'
             }
         });
     });
     
-    gsap.utils.toArray('.feature-card').forEach((card, index) => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none none'
-            }
-        });
-        
-        tl.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
-        
-        const featureNumber = card.querySelector('.feature-number');
-        if (featureNumber) {
-            tl.to(featureNumber, {
-                color: '#333333',
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.5');
-        }
-    });
-    
-    gsap.utils.toArray('.price-card').forEach((card, index) => {
-        gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: index * 0.1,
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none none'
-            }
-        });
-    });
-    
-    gsap.utils.toArray('.contact-item').forEach((item, index) => {
+    gsap.utils.toArray('.feature-item').forEach((item, i) => {
         gsap.to(item, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.6,
             ease: 'power3.out',
-            delay: index * 0.1,
+            delay: i * 0.08,
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+    
+    gsap.utils.toArray('.price-item').forEach((item, i) => {
+        gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: i * 0.1,
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+    
+    gsap.utils.toArray('.contact-block').forEach((item, i) => {
+        gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: i * 0.1,
             scrollTrigger: {
                 trigger: item,
                 start: 'top 80%',
@@ -112,7 +120,7 @@ function initAnimations() {
     gsap.to('.application-form', {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.7,
         ease: 'power3.out',
         scrollTrigger: {
             trigger: '.application-form',
@@ -128,7 +136,7 @@ function initAnimations() {
             if (target) {
                 gsap.to(window, {
                     scrollTo: { y: target, offsetY: 40 },
-                    duration: 1,
+                    duration: 0.8,
                     ease: 'power3.out'
                 });
             }

@@ -1,6 +1,9 @@
 function initMain() {
-    gsap.set('.hero-title, .hero-subtitle, .cta-button', { y: 40 });
-    gsap.set('.section-title, .feature-card, .price-card, .contact-item, .application-form', { y: 30 });
+    gsap.set('.logo, .nav a', { y: -20 });
+    gsap.set('.hero-label, .hero-title, .hero-subtitle', { y: 40 });
+    gsap.set('.cta-button', { y: 20 });
+    gsap.set('.section-label, .section-title', { y: 30 });
+    gsap.set('.feature-item, .price-item, .contact-block, .application-form', { y: 20 });
 }
 
 if (document.readyState === 'loading') {
