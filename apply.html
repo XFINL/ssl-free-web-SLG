@@ -55,20 +55,34 @@
             type="text" 
             class="form-input" 
             id="domain" 
-            placeholder="请输入域名"
+            placeholder="请输入域名，如 example.com"
           >
           <label class="form-label">证书类型</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="certType" value="single" checked>
               <span class="radio-custom"></span>
-              单域名证书
+              单域名证书 <span class="option-price">¥5</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="certType" value="multi">
+              <span class="radio-custom"></span>
+              多域名证书 <span class="option-price">¥10</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="certType" value="wildcard">
               <span class="radio-custom"></span>
-              泛域名证书
+              泛域名证书 <span class="option-price">¥15</span>
             </label>
+          </div>
+          <div class="additional-domains" id="additionalDomains" style="display: none;">
+            <label class="form-label">附加域名（每行一个）</label>
+            <textarea 
+              class="form-textarea" 
+              id="additionalDomainsText" 
+              placeholder="www.example.com&#10;api.example.com&#10;blog.example.com"
+            ></textarea>
+            <p class="additional-hint">每个附加域名额外收取 ¥3</p>
           </div>
         </div>
       </section>
@@ -132,16 +146,19 @@
               <input type="radio" name="duration" value="90" checked>
               <span class="duration-value">90</span>
               <span class="duration-unit">天</span>
+              <span class="duration-price">原价</span>
             </label>
             <label class="duration-option">
               <input type="radio" name="duration" value="180">
               <span class="duration-value">180</span>
               <span class="duration-unit">天</span>
+              <span class="duration-price">1.5倍</span>
             </label>
             <label class="duration-option">
               <input type="radio" name="duration" value="365">
               <span class="duration-value">365</span>
               <span class="duration-unit">天</span>
+              <span class="duration-price">2倍</span>
             </label>
           </div>
         </div>
@@ -228,22 +245,22 @@
           <label class="checkbox-option">
             <input type="checkbox" id="ecc" checked>
             <span class="checkbox-custom"></span>
-            使用 ECC 算法 (ECDSA)
+            使用 ECC 算法 (ECDSA) <span class="option-price">+¥2</span>
           </label>
           <label class="checkbox-option">
-            <input type="checkbox" id="wildcard">
+            <input type="checkbox" id="wwwSubdomain">
             <span class="checkbox-custom"></span>
-            包含 www 子域名
+            包含 www 子域名 <span class="option-price">+¥1</span>
           </label>
           <label class="checkbox-option">
             <input type="checkbox" id="autoRenew">
             <span class="checkbox-custom"></span>
-            启用自动续期
+            启用自动续期 <span class="option-price">+¥3/年</span>
           </label>
           <label class="checkbox-option">
             <input type="checkbox" id="ocsp">
             <span class="checkbox-custom"></span>
-            启用 OCSP Stapling
+            启用 OCSP Stapling <span class="option-price">+¥1</span>
           </label>
         </div>
       </section>
@@ -259,6 +276,10 @@
             <span class="summary-label">证书类型</span>
             <span class="summary-value" id="summaryType">单域名证书</span>
           </div>
+          <div class="summary-row" id="additionalDomainsSummary" style="display: none;">
+            <span class="summary-label">附加域名</span>
+            <span class="summary-value" id="summaryAdditionalDomains">0个</span>
+          </div>
           <div class="summary-row">
             <span class="summary-label">颁发机构</span>
             <span class="summary-value" id="summaryCA">Google Trust Services</span>
@@ -270,6 +291,10 @@
           <div class="summary-row">
             <span class="summary-label">CSR方式</span>
             <span class="summary-value" id="summaryCSR">自动生成</span>
+          </div>
+          <div class="summary-row" id="addonsSummary" style="display: none;">
+            <span class="summary-label">附加服务</span>
+            <span class="summary-value" id="summaryAddons">-</span>
           </div>
           <div class="summary-row total">
             <span class="summary-label">总计</span>
@@ -288,7 +313,6 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="js/apply.js"></script>
 </body>
 </html>
