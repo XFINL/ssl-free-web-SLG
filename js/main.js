@@ -1,264 +1,262 @@
 const elements = {
-  searchInput: document.querySelector('.search-input'),
-  searchIcon: document.querySelector('.search-icon'),
-  searchBox: document.querySelector('.search-box'),
+  logo: document.querySelector('.logo'),
+  searchSection: document.querySelector('.search-section'),
+  pricingSection: document.querySelector('.pricing-section'),
   priceCards: document.querySelectorAll('.price-card'),
   cardButtons: document.querySelectorAll('.card-button'),
-  logo: document.querySelector('.logo')
+  searchInput: document.querySelector('.search-input'),
+  searchBtn: document.querySelector('.search-btn'),
+  glowElements: document.querySelectorAll('.glow'),
+  domainInput: document.getElementById('domainInput'),
+  searchBtnEl: document.getElementById('searchBtn')
 };
 
-let searchTimeout = null;
+function initGSAPAnimations() {
+  gsap.set(elements.logo, { opacity: 0, y: -30 });
+  gsap.set(elements.searchSection, { opacity: 0, y: 40, scale: 0.95 });
+  gsap.set(elements.pricingSection, { opacity: 0, y: 50 });
+  gsap.set(elements.priceCards, { opacity: 0, scale: 0.9 });
+  gsap.set(elements.glowElements, { scale: 0, opacity: 0 });
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  tl.to(elements.glowElements, {
+    scale: 1,
+    opacity: 0.3,
+    duration: 2,
+    stagger: 0.3
+  })
+  .to(elements.logo, {
+    opacity: 1,
+    y: 0,
+    duration: 0.8
+  }, '-=1.5')
+  .to(elements.searchSection, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.8
+  }, '-=0.4')
+  .to(elements.priceCards, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.6,
+    stagger: 0.2
+  }, '-=0.3');
+
+  gsap.to(elements.glowElements[0], {
+    x: 'random(-50, 50)',
+    y: 'random(-50, 50)',
+    duration: 15,
+    repeat: -1,
+    ease: 'sine.inOut',
+    yoyo: true
+  });
+
+  gsap.to(elements.glowElements[1], {
+    x: 'random(-30, 30)',
+    y: 'random(-30, 30)',
+    duration: 12,
+    repeat: -1,
+    ease: 'sine.inOut',
+    yoyo: true
+  });
+
+  gsap.to(elements.glowElements[2], {
+    scale: 'random(0.8, 1.2)',
+    duration: 18,
+    repeat: -1,
+    ease: 'sine.inOut',
+    yoyo: true
+  });
+}
 
 function initEventListeners() {
-  if (elements.searchInput) {
-    elements.searchInput.addEventListener('focus', handleInputFocus);
-    elements.searchInput.addEventListener('blur', handleInputBlur);
-    elements.searchInput.addEventListener('input', debounce(handleInputChange, 300));
-    elements.searchInput.addEventListener('keypress', handleKeyPress);
-  }
-  
-  if (elements.searchIcon) {
-    elements.searchIcon.addEventListener('click', handleSearch);
-  }
-  
-  elements.priceCards.forEach(card => {
-    card.addEventListener('mouseenter', handleCardHover);
-    card.addEventListener('mouseleave', handleCardLeave);
-    card.addEventListener('click', handleCardClick);
+  elements.priceCards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        y: -10,
+        duration: 0.3,
+        ease: 'power2.out',
+        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 255, 255, 0.08)'
+      });
+
+      gsap.to(card.querySelector('::before'), {
+        x: '200%',
+        duration: 0.6,
+        ease: 'power2.inOut'
+      });
+
+      gsap.to(card.querySelector('::after'), {
+        opacity: 1,
+        duration: 0.3
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.3,
+        ease: 'power2.in',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
+      });
+
+      gsap.to(card.querySelector('::before'), {
+        x: '-100%',
+        duration: 0.1
+      });
+
+      gsap.to(card.querySelector('::after'), {
+        opacity: 0,
+        duration: 0.3
+      });
+    });
+
+    card.addEventListener('click', () => {
+      const type = card.dataset.type;
+      gsap.to(card, {
+        scale: 0.95,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1
+      });
+    });
   });
-  
+
   elements.cardButtons.forEach(button => {
-    button.addEventListener('click', handleButtonClick);
-    button.addEventListener('mouseenter', handleButtonHover);
-    button.addEventListener('mouseleave', handleButtonLeave);
+    button.addEventListener('mouseenter', () => {
+      gsap.to(button, {
+        scale: 1.02,
+        duration: 0.2
+      });
+    });
+
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.2
+      });
+    });
+
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const type = button.dataset.type;
+      const domain = elements.domainInput.value.trim();
+      
+      const params = new URLSearchParams({
+        type: type,
+        domain: domain || ''
+      });
+      
+      gsap.to(button, {
+        scale: 0.95,
+        opacity: 0.7,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        onComplete: () => {
+          window.location.href = `apply.html?${params.toString()}`;
+        }
+      });
+    });
   });
-  
-  if (elements.logo) {
-    elements.logo.addEventListener('click', handleLogoClick);
-  }
-}
 
-function handleInputFocus(event) {
-  const input = event.target;
-  input.setAttribute('data-focused', 'true');
-  animateElement(input.parentElement, 'focused');
-}
-
-function handleInputBlur(event) {
-  const input = event.target;
-  input.removeAttribute('data-focused');
-}
-
-function handleInputChange(event) {
-  const value = event.target.value.trim();
-  
-  if (value.length > 0) {
-    elements.searchIcon.style.color = '#ffffff';
-    elements.searchIcon.style.transform = 'scale(1.1)';
-  } else {
-    elements.searchIcon.style.color = '';
-    elements.searchIcon.style.transform = 'scale(1)';
-  }
-}
-
-function handleKeyPress(event) {
-  if (event.key === 'Enter') {
-    handleSearch(event);
-  }
-}
-
-function handleSearch(event) {
-  const query = elements.searchInput.value.trim();
-  
-  if (query) {
-    showNotification(`正在搜索域名: ${query}`, 'info');
-    setTimeout(() => {
-      showNotification('域名查询功能即将上线', 'success');
-    }, 1000);
-  } else {
-    elements.searchInput.focus();
-    showNotification('请输入要查询的域名', 'warning');
-  }
-}
-
-function handleCardHover(event) {
-  const card = event.currentTarget;
-  card.style.transform = 'translateY(-8px)';
-  card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 255, 255, 0.05)';
-}
-
-function handleCardLeave(event) {
-  const card = event.currentTarget;
-  card.style.transform = 'translateY(0)';
-  card.style.boxShadow = '';
-}
-
-function handleCardClick(event) {
-  const card = event.currentTarget;
-  const cardType = card.dataset.type;
-  const cardTitle = card.querySelector('.card-title').textContent;
-  
-  animateElement(card, 'clicked');
-  
-  setTimeout(() => {
-    showNotification(`您选择了: ${cardTitle}`, 'info');
-  }, 200);
-}
-
-function handleButtonClick(event) {
-  event.stopPropagation();
-  const button = event.target;
-  const card = button.closest('.price-card');
-  const cardType = card.dataset.type;
-  const price = card.querySelector('.price-value').textContent;
-  
-  animateButtonClick(button);
-  
-  setTimeout(() => {
-    if (cardType === 'wildcard') {
-      showNotification('泛域名证书申请流程启动中... ¥15/张', 'success');
-    } else if (cardType === 'single') {
-      showNotification('单域名证书申请流程启动中... ¥5/张', 'success');
+  elements.searchBtnEl.addEventListener('click', handleSearch);
+  elements.domainInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
-  }, 300);
+  });
+
+  elements.searchInput.addEventListener('focus', () => {
+    gsap.to(elements.searchSection, {
+      scale: 1.02,
+      duration: 0.3
+    });
+  });
+
+  elements.searchInput.addEventListener('blur', () => {
+    gsap.to(elements.searchSection, {
+      scale: 1,
+      duration: 0.3
+    });
+  });
+
+  elements.logo.addEventListener('click', () => {
+    gsap.fromTo(elements.logo, 
+      { scale: 1 },
+      { 
+        scale: 1.1, 
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut'
+      }
+    );
+  });
 }
 
-function handleButtonHover(event) {
-  const button = event.target;
-  button.style.transform = 'scale(1.02)';
-  button.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-}
-
-function handleButtonLeave(event) {
-  const button = event.target;
-  button.style.transform = 'scale(1)';
-  button.style.boxShadow = '';
-}
-
-function handleLogoClick() {
-  showNotification('欢迎使用 SecureSSL 证书申请平台', 'info');
-  animateElement(elements.logo, 'logo-bounce');
-}
-
-function animateElement(element, animationClass) {
-  if (!element) return;
+function handleSearch() {
+  const domain = elements.domainInput.value.trim();
   
-  element.classList.add(animationClass);
-  
-  setTimeout(() => {
-    element.classList.remove(animationClass);
-  }, 300);
-}
+  if (!domain) {
+    showNotification('请输入要查询的域名', 'warning');
+    gsap.fromTo(elements.searchSection,
+      { x: 0 },
+      { x: 10, duration: 0.1, yoyo: true, repeat: 2 }
+    );
+    return;
+  }
 
-function animateButtonClick(button) {
-  button.style.transform = 'scale(0.95)';
-  button.style.opacity = '0.8';
+  showNotification(`正在查询域名: ${domain}`, 'info');
   
-  setTimeout(() => {
-    button.style.transform = 'scale(1)';
-    button.style.opacity = '1';
-  }, 150);
+  gsap.to(elements.searchSection, {
+    scale: 0.95,
+    duration: 0.1,
+    yoyo: true,
+    repeat: 1,
+    onComplete: () => {
+      window.location.href = `apply.html?domain=${encodeURIComponent(domain)}`;
+    }
+  });
 }
 
 function showNotification(message, type = 'info') {
   const existingNotification = document.querySelector('.notification');
   if (existingNotification) {
-    existingNotification.remove();
+    gsap.to(existingNotification, {
+      x: 100,
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => existingNotification.remove()
+    });
   }
-  
+
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
   notification.textContent = message;
-  
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    color: #ffffff;
-    font-size: 14px;
-    z-index: 1000;
-    animation: slideIn 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    max-width: 300px;
-  `;
-  
+
   document.body.appendChild(notification);
-  
+
+  gsap.fromTo(notification,
+    { x: 100, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.3 }
+  );
+
   setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease forwards';
-    setTimeout(() => {
-      notification.remove();
-    }, 300);
+    gsap.to(notification, {
+      x: 100,
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => notification.remove()
+    });
   }, 3000);
 }
 
-function debounce(func, wait) {
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(searchTimeout);
-      searchTimeout = null;
-    };
-    
-    if (searchTimeout) {
-      clearTimeout(searchTimeout);
-    }
-    
-    searchTimeout = setTimeout(() => {
-      func.apply(this, args);
-    }, wait);
-  };
-}
-
 function init() {
+  initGSAPAnimations();
   initEventListeners();
-  
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(100px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    @keyframes slideOut {
-      from {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateX(100px);
-      }
-    }
-    
-    .notification-info {
-      border-left: 3px solid rgba(100, 181, 246, 1);
-    }
-    
-    .notification-success {
-      border-left: 3px solid rgba(129, 199, 132, 1);
-    }
-    
-    .notification-warning {
-      border-left: 3px solid rgba(255, 213, 79, 1);
-    }
-    
-    .notification-error {
-      border-left: 3px solid rgba(239, 83, 80, 1);
-    }
-  `;
-  document.head.appendChild(style);
 }
 
 if (document.readyState === 'loading') {

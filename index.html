@@ -6,7 +6,6 @@
   <meta name="description" content="专业的SSL证书申请平台，提供泛域名和单域名SSL证书申请服务">
   <title>SecureSSL - 专业SSL证书申请平台</title>
   
-  <link rel="stylesheet" href="https://at.alicdn.com/t/font_3503739_1gty9b4e65d.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -14,12 +13,6 @@
     
     <header class="header">
       <div class="logo">
-        <span class="logo-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4L6 12V22C6 30.84 12.28 39.18 20 40C27.72 39.18 34 30.84 34 22V12L20 4Z" fill="none" stroke="white" stroke-width="2"/>
-            <path d="M14 20L18 24L26 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
         <span class="logo-text">SecureSSL</span>
       </div>
     </header>
@@ -31,10 +24,16 @@
           <input 
             type="text" 
             class="search-input" 
+            id="domainInput"
             placeholder="输入您的域名..."
             aria-label="域名搜索"
           >
-          <span class="search-icon iconfont icon-sousuo"></span>
+          <button class="search-btn" id="searchBtn">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -49,7 +48,7 @@
             <span class="price-value">15</span>
             <span class="price-unit">/张</span>
           </div>
-          <button class="card-button">立即申请</button>
+          <button class="card-button" data-type="wildcard">立即申请</button>
         </article>
 
         <article class="price-card glass liquid-shine" data-type="single">
@@ -61,7 +60,7 @@
             <span class="price-value">5</span>
             <span class="price-unit">/张</span>
           </div>
-          <button class="card-button">立即申请</button>
+          <button class="card-button" data-type="single">立即申请</button>
         </article>
 
       </section>
@@ -75,6 +74,7 @@
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>申请成功 - SecureSSL</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="success-container">
+    
+    <div class="success-content">
+      <div class="success-icon">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="45" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+          <path d="M30 50L45 65L70 35" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <h1 class="success-title">申请提交成功</h1>
+      <p class="success-desc">您的SSL证书申请已成功提交，我们将在1-3个工作日内完成审核</p>
+      
+      <div class="success-info">
+        <div class="info-item">
+          <span class="info-label">订单编号</span>
+          <span class="info-value">SSL-2024-0001</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">申请时间</span>
+          <span class="info-value">2024-01-15 14:30:00</span>
+        </div>
+      </div>
+      
+      <div class="success-actions">
+        <button class="action-btn primary" onclick="goToHome()">返回首页</button>
+        <button class="action-btn secondary" onclick="viewOrder()">查看订单</button>
+      </div>
+    </div>
+
+    <div class="bg-decoration">
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+      <div class="glow glow-3"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    function initGSAPAnimations() {
+      const successContent = document.querySelector('.success-content');
+      const successIcon = document.querySelector('.success-icon');
+      const successTitle = document.querySelector('.success-title');
+      const successDesc = document.querySelector('.success-desc');
+      const successInfo = document.querySelector('.success-info');
+      const successActions = document.querySelector('.success-actions');
+      const glowElements = document.querySelectorAll('.glow');
+
+      gsap.set(successContent, { opacity: 0, scale: 0.9 });
+      gsap.set(successIcon, { opacity: 0, scale: 0 });
+      gsap.set(successTitle, { opacity: 0, y: 20 });
+      gsap.set(successDesc, { opacity: 0, y: 20 });
+      gsap.set(successInfo, { opacity: 0, y: 20 });
+      gsap.set(successActions, { opacity: 0, y: 20 });
+      gsap.set(glowElements, { scale: 0, opacity: 0 });
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.to(glowElements, {
+        scale: 1,
+        opacity: 0.3,
+        duration: 2,
+        stagger: 0.3
+      })
+      .to(successIcon, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.7)'
+      }, '-=1.5')
+      .to(successTitle, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, '-=0.4')
+      .to(successDesc, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, '-=0.2')
+      .to(successInfo, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, '-=0.2')
+      .to(successActions, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, '-=0.2');
+
+      gsap.to(successIcon, {
+        scale: 1.05,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+    }
+
+    function goToHome() {
+      window.location.href = 'index.html';
+    }
+
+    function viewOrder() {
+      alert('订单详情功能即将上线');
+    }
+
+    document.addEventListener('DOMContentLoaded', initGSAPAnimations);
+  </script>
+</body>
+</html>
