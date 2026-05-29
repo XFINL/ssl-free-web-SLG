@@ -14,8 +14,6 @@ const elements = {
 function initGSAPAnimations() {
   gsap.set(elements.logo, { opacity: 0, y: -30 });
   gsap.set(elements.searchSection, { opacity: 0, y: 40, scale: 0.95 });
-  gsap.set(elements.pricingSection, { opacity: 0, y: 50 });
-  gsap.set(elements.priceCards, { opacity: 0, scale: 0.9 });
   gsap.set(elements.glowElements, { scale: 0, opacity: 0 });
 
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -36,14 +34,7 @@ function initGSAPAnimations() {
     y: 0,
     scale: 1,
     duration: 0.8
-  }, '-=0.4')
-  .to(elements.priceCards, {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.6,
-    stagger: 0.2
-  }, '-=0.3');
+  }, '-=0.4');
 
   gsap.to(elements.glowElements[0], {
     x: 'random(-50, 50)',
@@ -73,51 +64,21 @@ function initGSAPAnimations() {
 }
 
 function initEventListeners() {
-  elements.priceCards.forEach((card, index) => {
-    card.addEventListener('mouseenter', () => {
-      gsap.to(card, {
-        y: -10,
-        duration: 0.3,
-        ease: 'power2.out',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 255, 255, 0.08)'
-      });
-    });
-
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        y: 0,
-        duration: 0.3,
-        ease: 'power2.in',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
-      });
-    });
-
+  elements.priceCards.forEach((card) => {
     card.addEventListener('click', () => {
       const type = card.dataset.type;
-      gsap.to(card, {
-        scale: 0.95,
-        duration: 0.1,
-        yoyo: true,
-        repeat: 1
+      const domain = elements.domainInput.value.trim();
+      
+      const params = new URLSearchParams({
+        type: type,
+        domain: domain || ''
       });
+      
+      window.location.href = `apply.html?${params.toString()}`;
     });
   });
 
   elements.cardButtons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-      gsap.to(button, {
-        scale: 1.02,
-        duration: 0.2
-      });
-    });
-
-    button.addEventListener('mouseleave', () => {
-      gsap.to(button, {
-        scale: 1,
-        duration: 0.2
-      });
-    });
-
     button.addEventListener('click', (e) => {
       e.stopPropagation();
       const type = button.dataset.type;
@@ -128,16 +89,7 @@ function initEventListeners() {
         domain: domain || ''
       });
       
-      gsap.to(button, {
-        scale: 0.95,
-        opacity: 0.7,
-        duration: 0.1,
-        yoyo: true,
-        repeat: 1,
-        onComplete: () => {
-          window.location.href = `apply.html?${params.toString()}`;
-        }
-      });
+      window.location.href = `apply.html?${params.toString()}`;
     });
   });
 

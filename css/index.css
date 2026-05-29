@@ -194,6 +194,27 @@ body {
   box-shadow: var(--shadow-glass);
   cursor: pointer;
   overflow: hidden;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.price-card:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.price-card:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .price-card::before {
