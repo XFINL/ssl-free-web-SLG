@@ -6,6 +6,9 @@ body {
 
 .grid-system {
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -13,6 +16,7 @@ body {
     position: relative;
     z-index: 100;
     border-bottom: 1px solid #1a1a1a;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -30,15 +34,208 @@ body {
     height: 100%;
 }
 
-.nav a {
+.nav-link {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    position: relative;
+    color: #666666;
+    transition: color 0.2s ease;
+}
+
+.nav-link.active {
+    color: #ffffff;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+#app {
+    flex: 1;
+}
+
+.page {
+    display: none;
+    opacity: 0;
+}
+
+.page.active {
+    display: block;
+}
+
+.hero,
+.features,
+.pricing,
+.application,
+.mine,
+.contact {
+    padding: 120px 0;
+    border-top: 1px solid #1a1a1a;
 }
 
 .hero {
-    padding: 120px 0;
+    border-top: none;
+}
+
+.application {
+    min-height: 70vh;
+}
+
+.mine {
+    min-height: 70vh;
+}
+
+.certificates-grid {
+    margin-top: 0;
+}
+
+.cert-item {
+    border: 1px solid #1a1a1a;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.cert-item:hover {
+    border-color: #ffffff;
+}
+
+.cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.cert-domain {
+    font-size: 1.125rem;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.cert-status {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    border: 1px solid;
+}
+
+.cert-status.active {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.cert-status.pending {
+    border-color: #666666;
+    color: #666666;
+}
+
+.cert-status.expired {
+    border-color: #666666;
+    color: #666666;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: 1px solid #1a1a1a;
+}
+
+.cert-info-row:first-child {
+    border-top: none;
+}
+
+.cert-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666666;
+}
+
+.cert-value {
+    font-size: 0.9375rem;
+}
+
+.cert-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.cert-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cert-btn:hover {
+    border-color: #ffffff;
+}
+
+.empty-state {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    border: 2px dashed #333333;
+}
+
+.empty-text {
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 32px;
+}
+
+.empty-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.empty-btn:hover {
+    background: #cccccc;
 }
 
 .hero-content {
