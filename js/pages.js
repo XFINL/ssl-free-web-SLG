@@ -7,7 +7,9 @@ const Pages = {
                     <div class="domain-form page-element">
                         <div class="domain-input-wrapper">
                             <input type="text" id="homeDomain" class="domain-input" placeholder="example.com" />
-                            <button id="getCertBtn" class="get-cert-btn">获取证书</button>
+                            <button id="getCertBtn" class="get-cert-btn" title="获取证书">
+                                <i class="iconfont icon-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                     
@@ -16,9 +18,6 @@ const Pages = {
                             <div class="price-card-title">单域名</div>
                             <div class="price-card-price">¥5</div>
                             <div class="price-card-period">/3个月</div>
-                        </div>
-                        <div class="price-divider">
-                            <span>或</span>
                         </div>
                         <div class="price-card">
                             <div class="price-card-title">泛域名</div>
@@ -31,9 +30,15 @@ const Pages = {
         </section>
         
         <nav class="mobile-float-nav">
-            <a href="#/" class="float-nav-item active">首页</a>
-            <a href="#/apply" class="float-nav-item">申请</a>
-            <a href="#/mine" class="float-nav-item">我的</a>
+            <a href="#/" class="float-nav-item active" title="首页">
+                <i class="iconfont icon-home"></i>
+            </a>
+            <a href="#/apply" class="float-nav-item" title="申请">
+                <i class="iconfont icon-add"></i>
+            </a>
+            <a href="#/mine" class="float-nav-item" title="我的">
+                <i class="iconfont icon-user"></i>
+            </a>
         </nav>
     `,
 

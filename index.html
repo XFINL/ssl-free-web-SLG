@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSL证书</title>
+    <title>SSL证书</title><link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/typography.css">
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4751119_44v8h0j0k7.css">
 </head>
 <body>
     <div class="grid-system">
@@ -20,9 +21,15 @@
                     </div>
                     <div class="grid-item col-4-12">
                         <nav class="nav">
-                            <a href="#/" data-route="/" class="nav-link active">首页</a>
-                            <a href="#/apply" data-route="/apply" class="nav-link">申请</a>
-                            <a href="#/mine" data-route="/mine" class="nav-link">我的</a>
+                            <a href="#/" data-route="/" class="nav-link active" title="首页">
+                                <i class="iconfont icon-home"></i>
+                            </a>
+                            <a href="#/apply" data-route="/apply" class="nav-link" title="申请">
+                                <i class="iconfont icon-add"></i>
+                            </a>
+                            <a href="#/mine" data-route="/mine" class="nav-link" title="我的">
+                                <i class="iconfont icon-user"></i>
+                            </a>
                         </nav>
                     </div>
                 </div>
@@ -33,18 +40,7 @@
         </main>
 
         <footer class="footer">
-            <div class="container">
-                <div class="grid">
-                    <div class="grid-item col-1-6">
-                        <div class="footer-info">
-                            <div class="footer-logo">SSL</div>
-                        </div>
-                    </div>
-                    <div class="grid-item col-7-12">
-                        <div class="footer-copy">© 2026</div>
-                    </div>
-                </div>
-            </div>
+            <div class="footer-copy">© 2026 SSL</div>
         </footer>
     </div>
 
