@@ -40,6 +40,10 @@ class Router {
                 link.classList.remove('active');
             }
         });
+        
+        if (typeof updateMobileNav === 'function') {
+            updateMobileNav();
+        }
     }
 
     navigate(path) {

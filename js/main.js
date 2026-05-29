@@ -70,12 +70,13 @@ function initPageAnimations() {
             stagger: 0.05
         });
     }
-}
-
-function initPriceButtons() {
-    const priceButtons = document.querySelectorAll('.price-action');
-    priceButtons.forEach(button => {
-        button.addEventListener('click', function() {
+    
+    const getCertBtn = document.getElementById('getCertBtn');
+    if (getCertBtn) {
+        getCertBtn.addEventListener('click', function() {
+            const domainInput = document.getElementById('homeDomain');
+            const domain = domainInput ? domainInput.value.trim() : '';
+            
             gsap.to(this, {
                 scale: 0.98,
                 duration: 0.1,
@@ -84,19 +85,35 @@ function initPriceButtons() {
                 repeat: 1
             });
             
-            const plan = this.getAttribute('data-plan');
-            const typeMap = { 'basic': 'dv', 'pro': 'ov', 'enterprise': 'ev' };
-            
             router.navigate('/apply');
             
             setTimeout(() => {
-                const typeSelect = document.getElementById('type');
-                if (typeSelect) {
-                    typeSelect.value = typeMap[plan];
+                const domainField = document.getElementById('domain');
+                if (domainField && domain) {
+                    domainField.value = domain;
                 }
             }, 100);
         });
+    }
+    
+    updateMobileNav();
+}
+
+function updateMobileNav() {
+    const currentPath = window.location.hash.slice(1) || '/';
+    document.querySelectorAll('.float-nav-item').forEach(item => {
+        const href = item.getAttribute('href');
+        const itemPath = href ? href.replace('#', '') : '';
+        
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
     });
+}
+
+function initPriceButtons() {
 }
 
 function initCertButtons() {

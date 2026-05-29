@@ -99,282 +99,142 @@ body::before {
     display: block;
 }
 
-.hero,
-.features,
-.pricing,
-.application,
-.mine {
-    padding: 100px 0;
+.hero-simple {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-bottom: 120px;
 }
 
-.hero {
-    padding-top: 120px;
+.hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 200px);
 }
 
-.hero-content {
-    position: relative;
-}
-
-.hero-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 24px;
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-}
-
-.hero-title {
-    font-size: 5rem;
+.logo-large {
+    font-size: 6rem;
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 24px;
+    letter-spacing: 0.3em;
     color: #ffffff;
+    margin-bottom: 40px;
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
 }
 
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.5);
-    max-width: 480px;
-    line-height: 1.7;
+.domain-form {
+    width: 100%;
+    max-width: 560px;
+    margin-bottom: 60px;
 }
 
-.cta-button {
-    display: inline-flex;
-    align-items: center;
-    padding: 20px 48px;
+.domain-input-wrapper {
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 8px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+}
+
+.domain-input-wrapper:focus-within {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.domain-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.125rem;
+    padding: 16px 24px;
+    outline: none;
+}
+
+.domain-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.get-cert-btn {
+    padding: 16px 32px;
     background: #ffffff;
     color: #000000;
     border: none;
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     cursor: pointer;
     border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.get-cert-btn:hover {
+    transform: translateY(-2px);
     box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
-    position: absolute;
-    bottom: 20px;
-    right: 0;
 }
 
-.cta-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.25);
-}
-
-.section-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.5);
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-}
-
-.section-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 60px;
-    color: #ffffff;
-}
-
-.feature-grid {
-    margin-top: 0;
-}
-
-.feature-item {
-    display: flex;
-    gap: 24px;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    backdrop-filter: blur(20px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.feature-item:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08),
-                0 0 40px rgba(255, 255, 255, 0.05);
-}
-
-.feature-num {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.3);
-    min-width: 60px;
-    height: 60px;
+.pricing-simple {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 24px;
+}
+
+.price-card {
+    padding: 32px 48px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-}
-
-.feature-content h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #ffffff;
-}
-
-.feature-content p {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.4);
-    line-height: 1.7;
-}
-
-.pricing-grid {
-    margin-top: 0;
-}
-
-.price-item {
-    padding: 40px 32px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease;
 }
 
-.price-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-}
-
-.price-item:hover {
-    background: rgba(255, 255, 255, 0.04);
+.price-card:hover {
     border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-12px);
-    box-shadow: 0 30px 80px rgba(255, 255, 255, 0.1),
-                0 0 60px rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08);
 }
 
-.price-item.featured {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1),
-                0 0 40px rgba(255, 255, 255, 0.05);
-}
-
-.price-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 32px;
-}
-
-.price-level {
+.price-card-title {
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.price-mark {
-    font-size: 0.625rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 6px 14px;
-    background: #ffffff;
-    color: #000000;
-    border-radius: 50px;
-}
-
-.price-main {
-    margin-bottom: 32px;
-}
-
-.price-amount {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 8px;
-    color: #ffffff;
-}
-
-.price-currency {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.price-period {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.price-list {
-    list-style: none;
-    margin: 0 0 32px 0;
-    padding: 0;
-}
-
-.price-list li {
-    padding: 14px 0;
-    font-size: 0.9375rem;
     color: rgba(255, 255, 255, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 12px;
 }
 
-.price-list li:first-child {
-    border-top: none;
-}
-
-.price-action {
-    width: 100%;
-    padding: 16px 32px;
-    background: rgba(255, 255, 255, 0.05);
+.price-card-price {
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: auto;
+    line-height: 1;
 }
 
-.price-action:hover {
-    background: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+.price-card-period {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 4px;
+}
+
+.price-divider {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-float-nav {
+    display: none;
+}
+
+.application,
+.mine {
+    padding: 100px 0;
 }
 
 .application {
@@ -581,65 +441,99 @@ body::before {
         gap: 20px;
     }
     
-    .hero {
-        padding: 80px 0;
+    .logo-large {
+        font-size: 4rem;
     }
     
-    .hero-content {
-        position: static;
+    .pricing-simple {
+        flex-direction: column;
+        gap: 16px;
     }
     
-    .cta-button {
-        position: static;
-        margin-top: 40px;
+    .price-card {
+        width: 100%;
+        max-width: 280px;
     }
     
-    .hero-title {
-        font-size: 3rem;
+    .price-divider {
+        display: none;
     }
     
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 48px;
-    }
-    
-    .features,
-    .pricing,
     .application,
     .mine {
         padding: 80px 0;
-    }
-    
-    .price-item {
-        padding: 32px 24px;
-    }
-    
-    .price-amount {
-        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 640px) {
     .header {
-        padding: 12px 0;
-    }
-    
-    .nav {
         display: none;
     }
     
-    .hero {
-        padding: 60px 0;
+    .hero-simple {
+        padding-top: 60px;
+        padding-bottom: 100px;
     }
     
-    .hero-title {
-        font-size: 2.25rem;
+    .logo-large {
+        font-size: 3rem;
+        letter-spacing: 0.2em;
     }
     
-    .features,
-    .pricing,
+    .domain-input-wrapper {
+        flex-direction: column;
+        gap: 8px;
+        border-radius: 24px;
+    }
+    
+    .domain-input {
+        padding: 14px 20px;
+        text-align: center;
+    }
+    
+    .get-cert-btn {
+        width: 100%;
+    }
+    
+    .mobile-float-nav {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 50px;
+        padding: 8px;
+        gap: 8px;
+        z-index: 1000;
+    }
+    
+    .float-nav-item {
+        padding: 12px 20px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    
+    .float-nav-item:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .float-nav-item.active {
+        background: #ffffff;
+        color: #000000;
+    }
+    
     .application,
     .mine {
         padding: 60px 0;
+        padding-bottom: 100px;
     }
 }

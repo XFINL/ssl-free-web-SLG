@@ -1,134 +1,40 @@
 const Pages = {
     home: () => `
-        <section class="hero">
+        <section class="hero-simple">
             <div class="container">
-                <div class="grid">
-                    <div class="grid-item col-1-8">
-                        <div class="hero-content">
-                            <div class="hero-label page-element">安全证书</div>
-                            <h1 class="hero-title page-element">SSL证书<br/>申请服务</h1>
-                            <p class="hero-subtitle page-element">保护您的网站安全，建立用户信任</p>
+                <div class="hero-center">
+                    <div class="logo-large page-element">SSL</div>
+                    <div class="domain-form page-element">
+                        <div class="domain-input-wrapper">
+                            <input type="text" id="homeDomain" class="domain-input" placeholder="example.com" />
+                            <button id="getCertBtn" class="get-cert-btn">获取证书</button>
                         </div>
                     </div>
-                    <div class="grid-item col-9-12">
-                        <a href="#/apply" class="cta-button page-element">立即申请</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="container">
-                <div class="grid">
-                    <div class="grid-item col-1-2">
-                        <div class="section-label page-element">01</div>
-                    </div>
-                    <div class="grid-item col-3-12">
-                        <h2 class="section-title page-element">核心功能</h2>
-                    </div>
-                </div>
-                <div class="grid feature-grid">
-                    <div class="grid-item col-1-4">
-                        <div class="feature-item page-element">
-                            <div class="feature-num">01</div>
-                            <div class="feature-content">
-                                <h3>快速申请</h3>
-                                <p>简化的申请流程，几分钟即可完成</p>
-                            </div>
+                    
+                    <div class="pricing-simple page-element">
+                        <div class="price-card">
+                            <div class="price-card-title">单域名</div>
+                            <div class="price-card-price">¥5</div>
+                            <div class="price-card-period">/3个月</div>
                         </div>
-                    </div>
-                    <div class="grid-item col-5-8">
-                        <div class="feature-item page-element">
-                            <div class="feature-num">02</div>
-                            <div class="feature-content">
-                                <h3>256位加密</h3>
-                                <p>最高级别的安全加密标准</p>
-                            </div>
+                        <div class="price-divider">
+                            <span>或</span>
                         </div>
-                    </div>
-                    <div class="grid-item col-9-12">
-                        <div class="feature-item page-element">
-                            <div class="feature-num">03</div>
-                            <div class="feature-content">
-                                <h3>自动续期</h3>
-                                <p>智能提醒与自动续期服务</p>
-                            </div>
+                        <div class="price-card">
+                            <div class="price-card-title">泛域名</div>
+                            <div class="price-card-price">¥10</div>
+                            <div class="price-card-period">/3个月</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="pricing">
-            <div class="container">
-                <div class="grid">
-                    <div class="grid-item col-1-2">
-                        <div class="section-label page-element">02</div>
-                    </div>
-                    <div class="grid-item col-3-12">
-                        <h2 class="section-title page-element">选择方案</h2>
-                    </div>
-                </div>
-                <div class="grid pricing-grid">
-                    <div class="grid-item col-1-4">
-                        <div class="price-item page-element">
-                            <div class="price-header">
-                                <div class="price-level">基础</div>
-                            </div>
-                            <div class="price-main">
-                                <div class="price-amount">免费</div>
-                                <div class="price-period">3个月</div>
-                            </div>
-                            <ul class="price-list">
-                                <li>单域名支持</li>
-                                <li>DV验证</li>
-                                <li>256位加密</li>
-                            </ul>
-                            <button class="price-action" data-plan="basic">选择</button>
-                        </div>
-                    </div>
-                    <div class="grid-item col-5-8">
-                        <div class="price-item featured page-element">
-                            <div class="price-header">
-                                <div class="price-level">专业</div>
-                                <div class="price-mark">推荐</div>
-                            </div>
-                            <div class="price-main">
-                                <div class="price-amount">299</div>
-                                <div class="price-currency">CNY</div>
-                                <div class="price-period">每年</div>
-                            </div>
-                            <ul class="price-list">
-                                <li>多域名支持</li>
-                                <li>OV验证</li>
-                                <li>256位加密</li>
-                                <li>优先支持</li>
-                            </ul>
-                            <button class="price-action" data-plan="pro">选择</button>
-                        </div>
-                    </div>
-                    <div class="grid-item col-9-12">
-                        <div class="price-item page-element">
-                            <div class="price-header">
-                                <div class="price-level">企业</div>
-                            </div>
-                            <div class="price-main">
-                                <div class="price-amount">999</div>
-                                <div class="price-currency">CNY</div>
-                                <div class="price-period">每年</div>
-                            </div>
-                            <ul class="price-list">
-                                <li>通配符支持</li>
-                                <li>EV验证</li>
-                                <li>256位加密</li>
-                                <li>专属客服</li>
-                            </ul>
-                            <button class="price-action" data-plan="enterprise">选择</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+        <nav class="mobile-float-nav">
+            <a href="#/" class="float-nav-item active">首页</a>
+            <a href="#/apply" class="float-nav-item">申请</a>
+            <a href="#/mine" class="float-nav-item">我的</a>
+        </nav>
     `,
 
     apply: () => `
