@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SSL证书申请页面 - 配置证书参数">
-  <title>SSL证书申请 - SecureSSL</title>
+  <title>SSL Certificate Application - SecureSSL</title>
   
   <link rel="stylesheet" href="css/apply.css">
 </head>
@@ -17,304 +16,298 @@
           <span class="logo-text">SecureSSL</span>
         </div>
         <button class="back-btn" onclick="goBack()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M15 19l-7-7 7-7"/>
           </svg>
-          返回首页
+          Back
         </button>
       </div>
     </header>
 
     <main class="apply-main">
       
-      <div class="apply-step">
-        <div class="step-indicator">
-          <div class="step active" data-step="1">1</div>
-          <div class="step-line active"></div>
-          <div class="step" data-step="2">2</div>
-          <div class="step-line"></div>
-          <div class="step" data-step="3">3</div>
-          <div class="step-line"></div>
-          <div class="step" data-step="4">4</div>
+      <div class="progress-bar">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div class="step-labels">
-          <span>类型</span>
-          <span>颁发机构</span>
-          <span>有效期</span>
-          <span>配置</span>
+        <div class="progress-labels">
+          <span>1. Type</span>
+          <span>2. CA</span>
+          <span>3. Duration</span>
+          <span>4. Config</span>
         </div>
       </div>
 
-      <section class="apply-section active" id="certTypeSection">
-        <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-          选择证书类型
-        </h2>
-        <div class="glass card">
-          <div class="type-options">
-            <label class="type-option">
-              <input type="radio" name="certType" value="single" checked>
-              <div class="type-card">
-                <div class="type-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                    <path d="M2 17l10 5 10-5"/>
-                    <path d="M2 12l10 5 10-5"/>
-                  </svg>
-                </div>
-                <span class="type-name">单域名证书</span>
-                <span class="type-price">¥5</span>
+      <section class="step-section active" id="step1">
+        <h1 class="section-heading">Select Certificate Type</h1>
+        <p class="section-subtitle">Choose the type of SSL certificate that fits your needs</p>
+        
+        <div class="card-grid">
+          <label class="card-option">
+            <input type="radio" name="certType" value="single" checked>
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
               </div>
-            </label>
-            <label class="type-option">
-              <input type="radio" name="certType" value="multi">
-              <div class="type-card">
-                <div class="type-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                  </svg>
-                </div>
-                <span class="type-name">多域名证书</span>
-                <span class="type-price">¥10</span>
+              <div class="card-content">
+                <h3>Single Domain</h3>
+                <p>Protect one domain</p>
+                <span class="card-price">¥5</span>
               </div>
-            </label>
-            <label class="type-option">
-              <input type="radio" name="certType" value="wildcard">
-              <div class="type-card">
-                <div class="type-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <path d="M16.5 9.5a4.5 4.5 0 0 1 0 9"/>
-                  </svg>
-                </div>
-                <span class="type-name">泛域名证书</span>
-                <span class="type-price">¥15</span>
+            </div>
+          </label>
+
+          <label class="card-option">
+            <input type="radio" name="certType" value="multi">
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="3"/>
+                  <circle cx="12" cy="12" r="8"/>
+                  <circle cx="12" cy="12" r="13"/>
+                </svg>
               </div>
-            </label>
-          </div>
+              <div class="card-content">
+                <h3>Multi Domain</h3>
+                <p>Protect multiple domains</p>
+                <span class="card-price">¥10</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="card-option">
+            <input type="radio" name="certType" value="wildcard">
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M8 12h8"/>
+                  <path d="M12 8v8"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>Wildcard</h3>
+                <p>Protect domain + all subdomains</p>
+                <span class="card-price">¥15</span>
+              </div>
+            </div>
+          </label>
         </div>
-        <div class="nav-buttons">
-          <button class="next-btn" id="nextToCA">下一步</button>
+
+        <button class="btn-primary" id="btnStep1">Continue</button>
+      </section>
+
+      <section class="step-section" id="step2">
+        <h1 class="section-heading">Select Certificate Authority</h1>
+        <p class="section-subtitle">Choose your preferred CA provider</p>
+        
+        <div class="card-grid">
+          <label class="card-option">
+            <input type="radio" name="ca" value="google" checked>
+            <div class="card">
+              <div class="card-icon google">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>Google Trust</h3>
+                <p>Trusted by millions</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="card-option">
+            <input type="radio" name="ca" value="zerossl">
+            <div class="card">
+              <div class="card-icon zerossl">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M8 15s1.5-2 4-2 4 2 4 2"/>
+                  <path d="M9 9h.01"/>
+                  <path d="M15 9h.01"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>ZeroSSL</h3>
+                <p>Simple & reliable</p>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn-secondary" id="btnBack2">Back</button>
+          <button class="btn-primary" id="btnStep2">Continue</button>
         </div>
       </section>
 
-      <section class="apply-section" id="caSection">
-        <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          选择颁发机构
-        </h2>
-        <div class="glass card">
-          <div class="ca-options">
-            <label class="ca-option">
-              <input type="radio" name="ca" value="google" checked>
-              <div class="ca-card">
-                <div class="ca-icon google">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                  </svg>
-                </div>
-                <span class="ca-name">Google</span>
+      <section class="step-section" id="step3">
+        <h1 class="section-heading">Select Duration</h1>
+        <p class="section-subtitle">Choose certificate validity period</p>
+        
+        <div class="card-grid">
+          <label class="card-option">
+            <input type="radio" name="duration" value="90" checked>
+            <div class="card">
+              <div class="card-content">
+                <span class="duration-number">90</span>
+                <h3>Days</h3>
+                <p>Standard validity</p>
+                <span class="duration-multiplier">1x Price</span>
               </div>
-            </label>
-            <label class="ca-option">
-              <input type="radio" name="ca" value="zerossl">
-              <div class="ca-card">
-                <div class="ca-icon zerossl">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M8 15s1.5-2 4-2 4 2 4 2"/>
-                    <path d="M9 9h.01"/>
-                    <path d="M15 9h.01"/>
-                  </svg>
-                </div>
-                <span class="ca-name">ZeroSSL</span>
+            </div>
+          </label>
+
+          <label class="card-option">
+            <input type="radio" name="duration" value="180">
+            <div class="card">
+              <div class="card-content">
+                <span class="duration-number">180</span>
+                <h3>Days</h3>
+                <p>6 months</p>
+                <span class="duration-multiplier">1.5x Price</span>
               </div>
-            </label>
-          </div>
+            </div>
+          </label>
+
+          <label class="card-option">
+            <input type="radio" name="duration" value="365">
+            <div class="card">
+              <div class="card-content">
+                <span class="duration-number">365</span>
+                <h3>Days</h3>
+                <p>1 year</p>
+                <span class="duration-multiplier">2x Price</span>
+              </div>
+            </div>
+          </label>
         </div>
-        <div class="nav-buttons">
-          <button class="prev-btn" id="prevToType">上一步</button>
-          <button class="next-btn" id="nextToDuration">下一步</button>
+
+        <div class="btn-group">
+          <button class="btn-secondary" id="btnBack3">Back</button>
+          <button class="btn-primary" id="btnStep3">Continue</button>
         </div>
       </section>
 
-      <section class="apply-section" id="durationSection">
-        <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-          选择有效期
-        </h2>
-        <div class="glass card">
-          <div class="duration-options">
-            <label class="duration-option">
-              <input type="radio" name="duration" value="90" checked>
-              <div class="duration-card">
-                <span class="duration-value">90</span>
-                <span class="duration-unit">天</span>
-                <span class="duration-price">原价</span>
-              </div>
-            </label>
-            <label class="duration-option">
-              <input type="radio" name="duration" value="180">
-              <div class="duration-card">
-                <span class="duration-value">180</span>
-                <span class="duration-unit">天</span>
-                <span class="duration-price">1.5倍</span>
-              </div>
-            </label>
-            <label class="duration-option">
-              <input type="radio" name="duration" value="365">
-              <div class="duration-card">
-                <span class="duration-value">365</span>
-                <span class="duration-unit">天</span>
-                <span class="duration-price">2倍</span>
-              </div>
-            </label>
-          </div>
-        </div>
-        <div class="nav-buttons">
-          <button class="prev-btn" id="prevToCA">上一步</button>
-          <button class="next-btn" id="nextToConfig">下一步</button>
-        </div>
-      </section>
-
-      <section class="apply-section" id="configSection">
-        <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-          </svg>
-          高级配置
-        </h2>
-        <div class="glass card">
-          <div class="radio-group csr-radio">
+      <section class="step-section" id="step4">
+        <h1 class="section-heading">Advanced Configuration</h1>
+        <p class="section-subtitle">Configure additional options</p>
+        
+        <div class="form-section">
+          <h2 class="form-heading">CSR Generation</h2>
+          <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="csrType" value="auto" checked>
-              <span class="radio-custom"></span>
-              自动生成CSR
+              <span class="radio-dot"></span>
+              <span class="radio-text">Auto-generate CSR</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="csrType" value="manual">
-              <span class="radio-custom"></span>
-              手动输入CSR
+              <span class="radio-dot"></span>
+              <span class="radio-text">Provide your own CSR</span>
             </label>
           </div>
-          
-          <div class="csr-fields" id="autoCsrFields">
-            <div class="csr-row">
-              <div class="csr-field">
-                <label class="form-label">国家 (C)</label>
-                <input type="text" class="form-input" id="country" placeholder="CN" value="CN">
-              </div>
-              <div class="csr-field">
-                <label class="form-label">省份 (ST)</label>
-                <input type="text" class="form-input" id="state" placeholder="Beijing">
-              </div>
+        </div>
+
+        <div class="form-section" id="autoCsrForm">
+          <h2 class="form-heading">Organization Information</h2>
+          <div class="input-grid">
+            <div class="input-field">
+              <label>Country (C)</label>
+              <input type="text" id="country" placeholder="CN" value="CN">
             </div>
-            <div class="csr-row">
-              <div class="csr-field">
-                <label class="form-label">城市 (L)</label>
-                <input type="text" class="form-input" id="city" placeholder="Beijing">
-              </div>
-              <div class="csr-field">
-                <label class="form-label">组织 (O)</label>
-                <input type="text" class="form-input" id="organization" placeholder="SecureSSL">
-              </div>
+            <div class="input-field">
+              <label>State (ST)</label>
+              <input type="text" id="state" placeholder="Beijing">
             </div>
-            <div class="csr-row">
-              <div class="csr-field">
-                <label class="form-label">组织单位 (OU)</label>
-                <input type="text" class="form-input" id="orgUnit" placeholder="IT Department">
-              </div>
-              <div class="csr-field">
-                <label class="form-label">邮箱</label>
-                <input type="email" class="form-input" id="email" placeholder="admin@example.com">
-              </div>
+            <div class="input-field">
+              <label>City (L)</label>
+              <input type="text" id="city" placeholder="Beijing">
+            </div>
+            <div class="input-field">
+              <label>Organization (O)</label>
+              <input type="text" id="organization" placeholder="Your Company">
+            </div>
+            <div class="input-field">
+              <label>Organizational Unit (OU)</label>
+              <input type="text" id="orgUnit" placeholder="IT Department">
+            </div>
+            <div class="input-field">
+              <label>Email</label>
+              <input type="email" id="email" placeholder="admin@example.com">
             </div>
           </div>
+        </div>
 
-          <div class="csr-fields hidden" id="manualCsrFields">
-            <label class="form-label">CSR内容</label>
-            <textarea 
-              class="form-textarea" 
-              id="csrContent" 
-              placeholder="请粘贴您的CSR内容...&#10;&#10;-----BEGIN CERTIFICATE REQUEST-----&#10;...&#10;-----END CERTIFICATE REQUEST-----"
-            ></textarea>
-          </div>
+        <div class="form-section hidden" id="manualCsrForm">
+          <h2 class="form-heading">CSR Content</h2>
+          <textarea id="csrContent" placeholder="-----BEGIN CERTIFICATE REQUEST-----&#10;...&#10;-----END CERTIFICATE REQUEST-----"></textarea>
+        </div>
 
-          <div class="addons-section">
+        <div class="form-section">
+          <h2 class="form-heading">Additional Options</h2>
+          <div class="checkbox-grid">
             <label class="checkbox-option">
               <input type="checkbox" id="ecc" checked>
-              <span class="checkbox-custom"></span>
-              使用 ECC 算法 (ECDSA) <span class="option-price">+¥2</span>
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">ECC Algorithm (ECDSA)</span>
+              <span class="checkbox-price">+¥2</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" id="wwwSubdomain">
-              <span class="checkbox-custom"></span>
-              包含 www 子域名 <span class="option-price">+¥1</span>
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">Include www subdomain</span>
+              <span class="checkbox-price">+¥1</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" id="autoRenew">
-              <span class="checkbox-custom"></span>
-              启用自动续期 <span class="option-price">+¥3/年</span>
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">Auto-renewal</span>
+              <span class="checkbox-price">+¥3/year</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" id="ocsp">
-              <span class="checkbox-custom"></span>
-              启用 OCSP Stapling <span class="option-price">+¥1</span>
+              <span class="checkbox-box"></span>
+              <span class="checkbox-text">OCSP Stapling</span>
+              <span class="checkbox-price">+¥1</span>
             </label>
           </div>
         </div>
-        
-        <div class="apply-summary">
-          <h3 class="summary-title">订单摘要</h3>
-          <div class="glass card summary-card">
-            <div class="summary-row">
-              <span class="summary-label">证书类型</span>
-              <span class="summary-value" id="summaryType">单域名证书</span>
-            </div>
-            <div class="summary-row">
-              <span class="summary-label">颁发机构</span>
-              <span class="summary-value" id="summaryCA">Google</span>
-            </div>
-            <div class="summary-row">
-              <span class="summary-label">有效期</span>
-              <span class="summary-value" id="summaryDuration">90天</span>
-            </div>
-            <div class="summary-row">
-              <span class="summary-label">CSR方式</span>
-              <span class="summary-value" id="summaryCSR">自动生成</span>
-            </div>
-            <div class="summary-row total">
-              <span class="summary-label">总计</span>
-              <span class="summary-value price">¥<span id="summaryPrice">5</span></span>
-            </div>
+
+        <div class="summary-card">
+          <h2 class="form-heading">Order Summary</h2>
+          <div class="summary-row">
+            <span>Certificate Type</span>
+            <span id="sumType">Single Domain</span>
+          </div>
+          <div class="summary-row">
+            <span>CA Provider</span>
+            <span id="sumCA">Google Trust</span>
+          </div>
+          <div class="summary-row">
+            <span>Duration</span>
+            <span id="sumDuration">90 Days</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="sumTotal">¥5</span>
           </div>
         </div>
-        
-        <div class="nav-buttons">
-          <button class="prev-btn" id="prevToDuration">上一步</button>
-          <button class="submit-btn" id="submitBtn">提交申请</button>
+
+        <div class="btn-group">
+          <button class="btn-secondary" id="btnBack4">Back</button>
+          <button class="btn-primary" id="btnSubmit">Submit Application</button>
         </div>
       </section>
     </main>
-
-    <div class="bg-decoration">
-      <div class="glow glow-1"></div>
-      <div class="glow glow-2"></div>
-      <div class="glow glow-3"></div>
-    </div>
   </div>
 
   <script src="js/apply.js"></script>

@@ -1,9 +1,22 @@
 let currentStep = 1;
 
+function updateProgress() {
+  const progressFill = document.getElementById('progressFill');
+  const progressLabels = document.querySelectorAll('.progress-labels span');
+  
+  progressFill.style.width = `${currentStep * 25}%`;
+  
+  progressLabels.forEach((label, index) => {
+    if (index < currentStep) {
+      label.classList.add('active');
+    } else {
+      label.classList.remove('active');
+    }
+  });
+}
+
 function goToStep(step) {
-  const sections = document.querySelectorAll('.apply-section');
-  const steps = document.querySelectorAll('.step');
-  const stepLines = document.querySelectorAll('.step-line');
+  const sections = document.querySelectorAll('.step-section');
   
   sections.forEach((section, index) => {
     if (index + 1 === step) {
@@ -13,23 +26,8 @@ function goToStep(step) {
     }
   });
   
-  steps.forEach((stepEl, index) => {
-    if (index + 1 <= step) {
-      stepEl.classList.add('active');
-    } else {
-      stepEl.classList.remove('active');
-    }
-  });
-  
-  stepLines.forEach((line, index) => {
-    if (index + 1 < step) {
-      line.classList.add('active');
-    } else {
-      line.classList.remove('active');
-    }
-  });
-  
   currentStep = step;
+  updateProgress();
 }
 
 function nextStep() {
@@ -46,18 +44,18 @@ function prevStep() {
 }
 
 function initCSRSwitch() {
-  const autoCsrFields = document.getElementById('autoCsrFields');
-  const manualCsrFields = document.getElementById('manualCsrFields');
+  const autoCsrForm = document.getElementById('autoCsrForm');
+  const manualCsrForm = document.getElementById('manualCsrForm');
   const csrRadios = document.querySelectorAll('input[name="csrType"]');
 
   csrRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       if (radio.value === 'auto') {
-        manualCsrFields.style.display = 'none';
-        autoCsrFields.style.display = 'block';
+        manualCsrForm.classList.add('hidden');
+        autoCsrForm.classList.remove('hidden');
       } else {
-        autoCsrFields.style.display = 'none';
-        manualCsrFields.style.display = 'block';
+        autoCsrForm.classList.add('hidden');
+        manualCsrForm.classList.remove('hidden');
       }
       updateSummary();
     });
@@ -104,72 +102,36 @@ function updateSummary() {
   const certType = document.querySelector('input[name="certType"]:checked')?.value || 'single';
   const ca = document.querySelector('input[name="ca"]:checked')?.value || 'google';
   const duration = document.querySelector('input[name="duration"]:checked')?.value || '90';
-  const csrType = document.querySelector('input[name="csrType"]:checked')?.value || 'auto';
   
   const typeNames = {
-    single: '单域名证书',
-    multi: '多域名证书',
-    wildcard: '泛域名证书'
+    single: 'Single Domain',
+    multi: 'Multi Domain',
+    wildcard: 'Wildcard'
   };
-  document.getElementById('summaryType').textContent = typeNames[certType];
+  document.getElementById('sumType').textContent = typeNames[certType];
   
   const caNames = {
-    google: 'Google',
+    google: 'Google Trust',
     zerossl: 'ZeroSSL'
   };
-  document.getElementById('summaryCA').textContent = caNames[ca];
-  document.getElementById('summaryDuration').textContent = `${duration}天`;
-  document.getElementById('summaryCSR').textContent = csrType === 'auto' ? '自动生成' : '手动输入';
-  document.getElementById('summaryPrice').textContent = calculatePrice();
+  document.getElementById('sumCA').textContent = caNames[ca];
+  document.getElementById('sumDuration').textContent = `${duration} Days`;
+  document.getElementById('sumTotal').textContent = `¥${calculatePrice()}`;
 }
 
 function handleSubmit() {
-  const submitBtn = document.getElementById('submitBtn');
+  const submitBtn = document.getElementById('btnSubmit');
   
   submitBtn.addEventListener('click', () => {
-    showNotification('正在提交申请...', 'info');
-    
-    submitBtn.style.transform = 'scale(0.95)';
-    submitBtn.style.opacity = '0.7';
+    submitBtn.style.transform = 'scale(0.98)';
+    submitBtn.style.opacity = '0.8';
     
     setTimeout(() => {
       submitBtn.style.transform = 'scale(1)';
       submitBtn.style.opacity = '1';
-      showNotification('申请提交成功！', 'success');
-      
-      setTimeout(() => {
-        window.location.href = 'success.html';
-      }, 1500);
-    }, 200);
+      window.location.href = 'success.html';
+    }, 300);
   });
-}
-
-function showNotification(message, type = 'info') {
-  const existingNotification = document.querySelector('.notification');
-  if (existingNotification) {
-    existingNotification.style.transform = 'translateX(100px)';
-    existingNotification.style.opacity = '0';
-    setTimeout(() => existingNotification.remove(), 300);
-  }
-
-  const notification = document.createElement('div');
-  notification.className = `notification notification-${type}`;
-  notification.textContent = message;
-  notification.style.transform = 'translateX(100px)';
-  notification.style.opacity = '0';
-
-  document.body.appendChild(notification);
-
-  setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-    notification.style.opacity = '1';
-  }, 50);
-
-  setTimeout(() => {
-    notification.style.transform = 'translateX(100px)';
-    notification.style.opacity = '0';
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
 }
 
 function goBack() {
@@ -177,13 +139,13 @@ function goBack() {
 }
 
 function init() {
-  document.getElementById('nextToCA').addEventListener('click', nextStep);
-  document.getElementById('nextToDuration').addEventListener('click', nextStep);
-  document.getElementById('nextToConfig').addEventListener('click', nextStep);
+  document.getElementById('btnStep1').addEventListener('click', nextStep);
+  document.getElementById('btnStep2').addEventListener('click', nextStep);
+  document.getElementById('btnStep3').addEventListener('click', nextStep);
   
-  document.getElementById('prevToType').addEventListener('click', prevStep);
-  document.getElementById('prevToCA').addEventListener('click', prevStep);
-  document.getElementById('prevToDuration').addEventListener('click', prevStep);
+  document.getElementById('btnBack2').addEventListener('click', prevStep);
+  document.getElementById('btnBack3').addEventListener('click', prevStep);
+  document.getElementById('btnBack4').addEventListener('click', prevStep);
   
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
