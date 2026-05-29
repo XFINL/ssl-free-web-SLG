@@ -3,7 +3,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #0a0a15 0%, #1a1a2e 50%, #0f0f23 100%);
+    background: #000000;
     overflow-x: hidden;
     margin: 0;
     min-height: 100vh;
@@ -17,9 +17,8 @@ body::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.08) 0%, transparent 60%);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
     z-index: -1;
     animation: float 20s ease-in-out infinite;
 }
@@ -43,7 +42,7 @@ body::before {
     z-index: 1000;
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,11 +51,8 @@ body::before {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #00c8ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .nav {
@@ -69,11 +65,11 @@ body::before {
 
 .nav-link {
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     position: relative;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 8px 16px;
     border-radius: 50px;
@@ -85,11 +81,9 @@ body::before {
 }
 
 .nav-link.active {
-    color: #ffffff;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-    border: 1px solid rgba(102, 126, 234, 0.3);
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.2),
-                inset 0 0 20px rgba(102, 126, 234, 0.05);
+    color: #000000;
+    background: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 #app {
@@ -126,12 +120,12 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: rgba(102, 126, 234, 0.8);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 24px;
     display: inline-block;
     padding: 8px 20px;
-    background: rgba(102, 126, 234, 0.1);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     backdrop-filter: blur(10px);
 }
@@ -141,16 +135,13 @@ body::before {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 24px;
-    background: linear-gradient(135deg, #ffffff 0%, #a8b4f0 50%, #c4b5fd 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     max-width: 480px;
     line-height: 1.7;
 }
@@ -159,8 +150,8 @@ body::before {
     display: inline-flex;
     align-items: center;
     padding: 20px 48px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
+    background: #ffffff;
+    color: #000000;
     border: none;
     font-size: 0.875rem;
     font-weight: 700;
@@ -169,7 +160,7 @@ body::before {
     cursor: pointer;
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
     position: absolute;
     bottom: 20px;
     right: 0;
@@ -177,7 +168,7 @@ body::before {
 
 .cta-button:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.25);
 }
 
 .section-label {
@@ -185,11 +176,11 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: rgba(102, 126, 234, 0.8);
+    color: rgba(255, 255, 255, 0.5);
     display: inline-block;
     padding: 8px 20px;
-    background: rgba(102, 126, 234, 0.1);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50px;
     backdrop-filter: blur(10px);
 }
@@ -198,10 +189,7 @@ body::before {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 60px;
-    background: linear-gradient(135deg, #ffffff 0%, #a8b4f0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .feature-grid {
@@ -212,7 +200,7 @@ body::before {
     display: flex;
     gap: 24px;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     backdrop-filter: blur(20px);
@@ -220,24 +208,24 @@ body::before {
 }
 
 .feature-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(102, 126, 234, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15),
-                0 0 40px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08),
+                0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .feature-num {
     font-size: 1.5rem;
     font-weight: 700;
-    color: rgba(102, 126, 234, 0.6);
+    color: rgba(255, 255, 255, 0.3);
     min-width: 60px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
 }
 
@@ -250,7 +238,7 @@ body::before {
 
 .feature-content p {
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     line-height: 1.7;
 }
 
@@ -260,7 +248,7 @@ body::before {
 
 .price-item {
     padding: 40px 32px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     backdrop-filter: blur(20px);
@@ -279,22 +267,22 @@ body::before {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 .price-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(102, 126, 234, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-12px);
-    box-shadow: 0 30px 80px rgba(102, 126, 234, 0.2),
-                0 0 60px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 30px 80px rgba(255, 255, 255, 0.1),
+                0 0 60px rgba(255, 255, 255, 0.05);
 }
 
 .price-item.featured {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    border-color: rgba(102, 126, 234, 0.4);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2),
-                0 0 40px rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1),
+                0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .price-header {
@@ -309,7 +297,7 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .price-mark {
@@ -318,8 +306,8 @@ body::before {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 6px 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
+    background: #ffffff;
+    color: #000000;
     border-radius: 50px;
 }
 
@@ -332,10 +320,7 @@ body::before {
     font-weight: 800;
     line-height: 1;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .price-currency {
@@ -343,12 +328,12 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .price-period {
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .price-list {
@@ -360,7 +345,7 @@ body::before {
 .price-list li {
     padding: 14px 0;
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -373,7 +358,7 @@ body::before {
     padding: 16px 32px;
     background: rgba(255, 255, 255, 0.05);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -385,10 +370,11 @@ body::before {
 }
 
 .price-action:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-color: transparent;
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
 }
 
 .application {
@@ -405,7 +391,7 @@ body::before {
 
 .cert-item {
     padding: 32px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     backdrop-filter: blur(20px);
@@ -416,11 +402,11 @@ body::before {
 }
 
 .cert-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(102, 126, 234, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15),
-                0 0 40px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.08),
+                0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .cert-header {
@@ -447,21 +433,21 @@ body::before {
 }
 
 .cert-status.active {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    color: #22c55e;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
 .cert-status.pending {
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    color: #fbbf24;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .cert-status.expired {
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    color: #ef4444;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .cert-info {
@@ -484,12 +470,12 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .cert-value {
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .cert-actions {
@@ -502,7 +488,7 @@ body::before {
     flex: 1;
     padding: 14px 20px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
     font-size: 0.75rem;
     font-weight: 600;
@@ -514,8 +500,9 @@ body::before {
 }
 
 .cert-btn:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-    border-color: rgba(102, 126, 234, 0.3);
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
 }
 
 .empty-state {
@@ -527,22 +514,22 @@ body::before {
     width: 100px;
     height: 100px;
     margin: 0 auto 24px;
-    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.02);
 }
 
 .empty-text {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 32px;
 }
 
 .empty-btn {
     display: inline-block;
     padding: 16px 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
+    background: #ffffff;
+    color: #000000;
     border: none;
     font-size: 0.875rem;
     font-weight: 700;
@@ -551,12 +538,12 @@ body::before {
     cursor: pointer;
     border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
 }
 
 .empty-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.25);
 }
 
 .footer {
@@ -576,16 +563,13 @@ body::before {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
 }
 
 .footer-copy {
     text-align: right;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 960px) {
