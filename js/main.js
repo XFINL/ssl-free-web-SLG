@@ -1,9 +1,7 @@
 const elements = {
   logo: document.querySelector('.logo'),
   searchSection: document.querySelector('.search-section'),
-  pricingSection: document.querySelector('.pricing-section'),
   priceCards: document.querySelectorAll('.price-card'),
-  cardButtons: document.querySelectorAll('.card-button'),
   searchInput: document.querySelector('.search-input'),
   searchBtn: document.querySelector('.search-btn'),
   glowElements: document.querySelectorAll('.glow'),
@@ -67,21 +65,6 @@ function initEventListeners() {
   elements.priceCards.forEach((card) => {
     card.addEventListener('click', () => {
       const type = card.dataset.type;
-      const domain = elements.domainInput.value.trim();
-      
-      const params = new URLSearchParams({
-        type: type,
-        domain: domain || ''
-      });
-      
-      window.location.href = `apply.html?${params.toString()}`;
-    });
-  });
-
-  elements.cardButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const type = button.dataset.type;
       const domain = elements.domainInput.value.trim();
       
       const params = new URLSearchParams({
