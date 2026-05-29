@@ -144,15 +144,22 @@ body {
 }
 
 .step.active {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(100, 200, 255, 0.2);
+  border-color: rgba(100, 200, 255, 0.6);
   color: #ffffff;
+  box-shadow: 0 0 15px rgba(100, 200, 255, 0.3);
+  transform: scale(1.1);
 }
 
 .step-line {
   width: 60px;
   height: 2px;
   background: var(--glass-border);
+  transition: all var(--transition-normal);
+}
+
+.step-line.active {
+  background: linear-gradient(90deg, rgba(100, 200, 255, 0.8), rgba(100, 200, 255, 0.3));
 }
 
 .step-labels {
@@ -169,33 +176,13 @@ body {
 }
 
 .apply-section {
+  display: none;
   margin-bottom: var(--space-lg);
+}
+
+.apply-section.active {
+  display: block;
   animation: fadeInUp 0.5s ease-out forwards;
-  opacity: 0;
-}
-
-.apply-section:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.apply-section:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.apply-section:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-.apply-section:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-.apply-section:nth-child(6) {
-  animation-delay: 0.5s;
-}
-
-.apply-section:nth-child(7) {
-  animation-delay: 0.6s;
 }
 
 .section-title {
@@ -352,7 +339,140 @@ body {
 
 .ca-option input[type="radio"]:checked + .ca-card {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(100, 200, 255, 0.5);
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.2);
+}
+
+.type-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.type-option {
+  cursor: pointer;
+}
+
+.type-option input[type="radio"] {
+  display: none;
+}
+
+.type-card {
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+
+.type-option input[type="radio"]:checked + .type-card {
+  background: rgba(100, 200, 255, 0.1);
+  border-color: rgba(100, 200, 255, 0.5);
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.type-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(100, 200, 255, 0.8);
+}
+
+.type-option input[type="radio"]:checked + .type-card .type-icon {
+  color: #64C8FF;
+}
+
+.type-name {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.type-price {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(100, 200, 100, 0.9);
+}
+
+.type-option input[type="radio"]:checked + .type-card .type-price {
+  color: #64C864;
+}
+
+.duration-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.duration-option input[type="radio"]:checked + .duration-card {
+  background: rgba(100, 200, 255, 0.1);
+  border-color: rgba(100, 200, 255, 0.5);
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.2);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
+.prev-btn,
+.next-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+}
+
+.prev-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+}
+
+.prev-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--glass-border-hover);
+  color: var(--text-primary);
+}
+
+.next-btn {
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(100, 200, 255, 0.1) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(100, 200, 255, 0.3);
+}
+
+.next-btn:hover {
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.3) 0%, rgba(100, 200, 255, 0.2) 100%);
+  border-color: rgba(100, 200, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.addons-section {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--glass-border);
+}
+
+.summary-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
 }
 
 .ca-icon {

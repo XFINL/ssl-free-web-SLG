@@ -1,9 +1,48 @@
-function getUrlParams() {
-  const params = new URLSearchParams(window.location.search);
-  return {
-    domain: params.get('domain') || '',
-    type: params.get('type') || 'single'
-  };
+let currentStep = 1;
+
+function goToStep(step) {
+  const sections = document.querySelectorAll('.apply-section');
+  const steps = document.querySelectorAll('.step');
+  const stepLines = document.querySelectorAll('.step-line');
+  
+  sections.forEach((section, index) => {
+    if (index + 1 === step) {
+      section.classList.add('active');
+    } else {
+      section.classList.remove('active');
+    }
+  });
+  
+  steps.forEach((stepEl, index) => {
+    if (index + 1 <= step) {
+      stepEl.classList.add('active');
+    } else {
+      stepEl.classList.remove('active');
+    }
+  });
+  
+  stepLines.forEach((line, index) => {
+    if (index + 1 < step) {
+      line.classList.add('active');
+    } else {
+      line.classList.remove('active');
+    }
+  });
+  
+  currentStep = step;
+}
+
+function nextStep() {
+  if (currentStep < 4) {
+    goToStep(currentStep + 1);
+    updateSummary();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    goToStep(currentStep - 1);
+  }
 }
 
 function initCSRSwitch() {
@@ -15,65 +54,19 @@ function initCSRSwitch() {
     radio.addEventListener('change', () => {
       if (radio.value === 'auto') {
         manualCsrFields.style.display = 'none';
-        setTimeout(() => {
-          autoCsrFields.style.display = 'block';
-        }, 100);
+        autoCsrFields.style.display = 'block';
       } else {
         autoCsrFields.style.display = 'none';
-        setTimeout(() => {
-          manualCsrFields.style.display = 'block';
-        }, 100);
+        manualCsrFields.style.display = 'block';
       }
+      updateSummary();
     });
   });
-}
-
-function initDomainDetection() {
-  const domainInput = document.getElementById('domain');
-  const certTypeRadios = document.querySelectorAll('input[name="certType"]');
-
-  domainInput.addEventListener('input', () => {
-    const domain = domainInput.value.trim().toLowerCase();
-    
-    if (domain.includes('*') || domain.includes('wildcard')) {
-      certTypeRadios.forEach(radio => {
-        if (radio.value === 'wildcard') {
-          radio.checked = true;
-        }
-      });
-    }
-  });
-}
-
-function initAdditionalDomains() {
-  const certTypeRadios = document.querySelectorAll('input[name="certType"]');
-  const additionalDomains = document.getElementById('additionalDomains');
-
-  certTypeRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (radio.value === 'multi') {
-        additionalDomains.style.display = 'block';
-      } else {
-        additionalDomains.style.display = 'none';
-      }
-    });
-  });
-}
-
-function countAdditionalDomains() {
-  const textarea = document.getElementById('additionalDomainsText');
-  if (!textarea) return 0;
-  
-  const value = textarea.value.trim();
-  if (!value) return 0;
-  
-  return value.split('\n').filter(line => line.trim()).length;
 }
 
 function calculatePrice() {
   const certType = document.querySelector('input[name="certType"]:checked')?.value || 'single';
   const duration = document.querySelector('input[name="duration"]:checked')?.value || '90';
-  const additionalDomains = countAdditionalDomains();
   
   let basePrice = 0;
   
@@ -96,43 +89,22 @@ function calculatePrice() {
     durationMultiplier = 2;
   }
   
-  const additionalPrice = additionalDomains * 3;
-  
   let addonsPrice = 0;
   if (document.getElementById('ecc').checked) addonsPrice += 2;
   if (document.getElementById('wwwSubdomain').checked) addonsPrice += 1;
   if (document.getElementById('autoRenew').checked) addonsPrice += 3;
   if (document.getElementById('ocsp').checked) addonsPrice += 1;
   
-  const totalPrice = Math.round((basePrice + additionalPrice + addonsPrice) * durationMultiplier);
+  const totalPrice = Math.round((basePrice + addonsPrice) * durationMultiplier);
   
-  return {
-    basePrice,
-    additionalPrice,
-    addonsPrice,
-    totalPrice
-  };
-}
-
-function getSelectedAddons() {
-  const addons = [];
-  if (document.getElementById('ecc').checked) addons.push('ECC算法');
-  if (document.getElementById('wwwSubdomain').checked) addons.push('www子域名');
-  if (document.getElementById('autoRenew').checked) addons.push('自动续期');
-  if (document.getElementById('ocsp').checked) addons.push('OCSP Stapling');
-  return addons;
+  return totalPrice;
 }
 
 function updateSummary() {
-  const domain = document.getElementById('domain').value || '-';
   const certType = document.querySelector('input[name="certType"]:checked')?.value || 'single';
   const ca = document.querySelector('input[name="ca"]:checked')?.value || 'google';
   const duration = document.querySelector('input[name="duration"]:checked')?.value || '90';
   const csrType = document.querySelector('input[name="csrType"]:checked')?.value || 'auto';
-  const additionalDomains = countAdditionalDomains();
-  const addons = getSelectedAddons();
-  
-  document.getElementById('summaryDomain').textContent = domain;
   
   const typeNames = {
     single: '单域名证书',
@@ -141,43 +113,20 @@ function updateSummary() {
   };
   document.getElementById('summaryType').textContent = typeNames[certType];
   
-  if (certType === 'multi') {
-    document.getElementById('additionalDomainsSummary').style.display = 'flex';
-    document.getElementById('summaryAdditionalDomains').textContent = `${additionalDomains}个 (+¥${additionalDomains * 3})`;
-  } else {
-    document.getElementById('additionalDomainsSummary').style.display = 'none';
-  }
-  
   const caNames = {
-    google: 'Google Trust Services',
+    google: 'Google',
     zerossl: 'ZeroSSL'
   };
   document.getElementById('summaryCA').textContent = caNames[ca];
   document.getElementById('summaryDuration').textContent = `${duration}天`;
   document.getElementById('summaryCSR').textContent = csrType === 'auto' ? '自动生成' : '手动输入';
-  
-  if (addons.length > 0) {
-    document.getElementById('addonsSummary').style.display = 'flex';
-    document.getElementById('summaryAddons').textContent = addons.join(', ');
-  } else {
-    document.getElementById('addonsSummary').style.display = 'none';
-  }
-  
-  const price = calculatePrice();
-  document.getElementById('summaryPrice').textContent = price.totalPrice;
+  document.getElementById('summaryPrice').textContent = calculatePrice();
 }
 
 function handleSubmit() {
   const submitBtn = document.getElementById('submitBtn');
   
   submitBtn.addEventListener('click', () => {
-    const domain = document.getElementById('domain').value.trim();
-    
-    if (!domain) {
-      showNotification('请输入域名', 'warning');
-      return;
-    }
-
     showNotification('正在提交申请...', 'info');
     
     submitBtn.style.transform = 'scale(0.95)';
@@ -228,27 +177,25 @@ function goBack() {
 }
 
 function init() {
-  const params = getUrlParams();
+  document.getElementById('nextToCA').addEventListener('click', nextStep);
+  document.getElementById('nextToDuration').addEventListener('click', nextStep);
+  document.getElementById('nextToConfig').addEventListener('click', nextStep);
   
-  if (params.domain) {
-    document.getElementById('domain').value = params.domain;
-  }
+  document.getElementById('prevToType').addEventListener('click', prevStep);
+  document.getElementById('prevToCA').addEventListener('click', prevStep);
+  document.getElementById('prevToDuration').addEventListener('click', prevStep);
   
-  if (params.type) {
-    const radio = document.querySelector(`input[name="certType"][value="${params.type}"]`);
-    if (radio) radio.checked = true;
-  }
-
-  initCSRSwitch();
-  initDomainDetection();
-  initAdditionalDomains();
-  
-  const inputs = document.querySelectorAll('input, textarea');
-  inputs.forEach(input => {
-    input.addEventListener('change', updateSummary);
-    input.addEventListener('input', updateSummary);
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', updateSummary);
   });
   
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateSummary);
+  });
+  
+  initCSRSwitch();
   updateSummary();
   handleSubmit();
 }
