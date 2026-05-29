@@ -81,17 +81,6 @@ function initEventListeners() {
         ease: 'power2.out',
         boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 255, 255, 0.08)'
       });
-
-      gsap.to(card.querySelector('::before'), {
-        x: '200%',
-        duration: 0.6,
-        ease: 'power2.inOut'
-      });
-
-      gsap.to(card.querySelector('::after'), {
-        opacity: 1,
-        duration: 0.3
-      });
     });
 
     card.addEventListener('mouseleave', () => {
@@ -100,16 +89,6 @@ function initEventListeners() {
         duration: 0.3,
         ease: 'power2.in',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
-      });
-
-      gsap.to(card.querySelector('::before'), {
-        x: '-100%',
-        duration: 0.1
-      });
-
-      gsap.to(card.querySelector('::after'), {
-        opacity: 0,
-        duration: 0.3
       });
     });
 
