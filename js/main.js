@@ -1,7 +1,6 @@
 const elements = {
   logo: document.querySelector('.logo'),
   searchSection: document.querySelector('.search-section'),
-  priceCards: document.querySelectorAll('.price-card'),
   searchInput: document.querySelector('.search-input'),
   searchBtn: document.querySelector('.search-btn'),
   glowElements: document.querySelectorAll('.glow'),
@@ -62,20 +61,6 @@ function initGSAPAnimations() {
 }
 
 function initEventListeners() {
-  elements.priceCards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const type = card.dataset.type;
-      const domain = elements.domainInput.value.trim();
-      
-      const params = new URLSearchParams({
-        type: type,
-        domain: domain || ''
-      });
-      
-      window.location.href = `apply.html?${params.toString()}`;
-    });
-  });
-
   elements.searchBtnEl.addEventListener('click', handleSearch);
   elements.domainInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
